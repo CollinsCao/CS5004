@@ -1,0 +1,327 @@
+Question 1
+
+import java.util.Arrays;
+public class Student implements Comparable {
+
+	private String lastName;
+	private int studentID;
+
+	public Student() {
+		this.lastName = "";
+		this.studentID = 0;
+	}
+
+	public Student(String lastName, int studentID) {
+		this.lastName = lastName;
+		this.studentID = studentID;
+	}
+
+	public String getLastName() { return lastName; }
+	public int getStudentID() { return studentID; }
+
+	public void setLastName(String lastName) { this.lastName = lastName; }
+	public void setStudentID(int id) { this.studentID = id; }
+
+// ---- use ID to sort ----
+	
+	@Override
+	public int compareTo(Object other) {
+		Student otherStudent = (Student) other;
+		if (this.studentID < otherStudent.studentID) return -1;
+		if (this.studentID > otherStudent.studentID) return 1;
+		return 0;
+	}
+
+// 	use compareTo change to lastName sort（
+ 	public int compareTo(Object other) {
+		Student otherStudent = (Student) other;
+		return this.lastName.compareTo(otherStudent.lastName);
+	}
+	
+	@Override
+	public String toString() {
+		return "Student[ID=" + studentID + ", lastName=" + lastName + "]";
+	}
+
+	public static void main(String[] args) {
+		Student[] students = new Student[5];
+		students[0] = new Student("Wang", 3);
+		students[1] = new Student("Smith", 1);
+		students[2] = new Student("Zhang", 5);
+		students[3] = new Student("Adams", 2);
+		students[4] = new Student("Brown", 4);
+	
+	Arrays.sort(students); 
+	for (Student s: students) {
+		System.out.println(s);
+	}
+     
+}
+
+question 2
+
+Class: Movie
+1. Abstract or Concrete?
+Concrete class — there is no abstract keyword before the class declaration.
+2. Superclass and Subclasses:
+
+Superclass: Object (all Java classes implicitly extend Object)
+Subclasses: ActionMovie, ComedyMovie, DramaMovie
+
+3. Variables:
+MovieID
+
+Purpose: Stores the ID number of the movie
+Access level: private — only accessible within the Movie class
+
+title
+
+Purpose: Stores the title of the movie
+Access level: private — only accessible within the Movie class
+
+rating
+
+Purpose: Stores the rating of the movie (e.g. R, PG-13)
+Access level: private — only accessible within the Movie class
+
+4. Methods:
+Movie()
+
+Input: Takes no input
+What it does: Default constructor, initializes MovieID to 0, title to "", and rating to ""
+Returns: Nothing (void)
+
+Movie(int ID, String title, String rating)
+
+Input: Takes in an int called ID, a String called title, and a String called rating
+What it does: Parameterized constructor, sets all three instance variables using the given values
+Returns: Nothing (void)
+
+getID()
+
+Input: Takes no input
+What it does: Returns the MovieID of this movie
+Returns: an int
+
+setID(int ID)
+
+Input: Takes in an int called ID
+What it does: Sets the MovieID to the given value
+Returns: Nothing (void)
+
+getTitle()
+
+Input: Takes no input
+What it does: Returns the title of this movie
+Returns: a String
+
+setTitle(String name)
+
+Input: Takes in a String called name
+What it does: Sets the title to the given value
+Returns: Nothing (void)
+
+getRating()
+
+Input: Takes no input
+What it does: Returns the rating of this movie
+Returns: a String
+
+setRating(String rating)
+
+Input: Takes in a String called rating
+What it does: Sets the rating to the given value
+Returns: Nothing (void)
+
+equals(Object other)
+
+Input: Takes in an Object called other
+What it does:
+
+If other is null → returns false
+If the two objects are not the same class → returns false
+If both objects have the same MovieID → returns true
+Otherwise → returns false
+
+
+Returns: a boolean (true if equal, false otherwise)
+
+calcLateFees(int daysLate)
+
+Input: Takes in an int called daysLate
+What it does: Calculates the late fee by multiplying 2.0 by daysLate
+Returns: a double representing the late fee amount
+
+
+Class: ActionMovie
+1. Abstract or Concrete?
+Concrete class — there is no abstract keyword before the class declaration.
+2. Superclass and Subclasses:
+
+Superclass: Movie
+Subclasses: none
+
+3. Variables:
+ActionMovie has no new variables of its own.
+It inherits MovieID, title, and rating from Movie, but cannot access them directly because they are private.
+4. Methods:
+ActionMovie()
+
+Input: Takes no input
+What it does: Default constructor, calls the parent class Movie's default constructor using super()
+Returns: Nothing (void)
+
+ActionMovie(int ID, String title, String rating)
+
+Input: Takes in an int called ID, a String called title, and a String called rating
+What it does: Parameterized constructor, calls the parent class Movie's parameterized constructor using super(ID, title, rating)
+Returns: Nothing (void)
+
+calcLateFees(int daysLate)
+
+Input: Takes in an int called daysLate
+What it does: Overrides the calcLateFees method in the parent class Movie. Calculates the late fee by multiplying 3.0 by daysLate
+Returns: a double representing the late fee amount
+
+
+Class: ComedyMovie
+1. Abstract or Concrete?
+Concrete class — there is no abstract keyword before the class declaration.
+2. Superclass and Subclasses:
+
+Superclass: Movie
+Subclasses: none
+
+3. Variables:
+ComedyMovie has no new variables of its own.
+It inherits MovieID, title, and rating from Movie, but cannot access them directly because they are private.
+4. Methods:
+ComedyMovie()
+
+Input: Takes no input
+What it does: Default constructor, calls the parent class Movie's default constructor using super()
+Returns: Nothing (void)
+
+ComedyMovie(int ID, String title, String rating)
+
+Input: Takes in an int called ID, a String called title, and a String called rating
+What it does: Parameterized constructor, calls the parent class Movie's parameterized constructor using super(ID, title, rating)
+Returns: Nothing (void)
+
+calcLateFees(int daysLate)
+
+Input: Takes in an int called daysLate
+What it does: Overrides the calcLateFees method in the parent class Movie. Calculates the late fee by multiplying 2.5 by daysLate
+Returns: a double representing the late fee amount
+
+
+Class: DramaMovie
+1. Abstract or Concrete?
+Concrete class — there is no abstract keyword before the class declaration.
+2. Superclass and Subclasses:
+
+Superclass: Movie
+Subclasses: none
+
+3. Variables:
+DramaMovie has no new variables of its own.
+It inherits MovieID, title, and rating from Movie, but cannot access them directly because they are private.
+4. Methods:
+DramaMovie()
+
+Input: Takes no input
+What it does: Default constructor, calls the parent class Movie's default constructor using super()
+Returns: Nothing (void)
+
+DramaMovie(int ID, String title, String rating)
+
+Input: Takes in an int called ID, a String called title, and a String called rating
+What it does: Parameterized constructor, calls the parent class Movie's parameterized constructor using super(ID, title, rating)
+Returns: Nothing (void)
+
+Important Note:
+DramaMovie does NOT override calcLateFees.
+Therefore it inherits Movie's version → fee = 2.0 × daysLate
+This is an example of inheritance — DramaMovie automatically uses the parent class method.
+
+question 3
+
+If Kill Bill: Volume 2 is 2 days late the fee is 6.0
+If Kill Bill: Volume 2 is 3 days late the fee is 9.0
+If Mean Girls is 3 days late the fee is 7.5
+If Mystic River is 3 days late the fee is 6.0
+Is Kill Bill: Volume 2 equal Mystic River? false
+Is Mean Girls equal Mystic River? false
+Is Mystic River equal Mystic River, Second Copy? true
+
+
+
+question 4
+
+
+class Rental {
+
+    private Movie movie;
+    private int daysRented;
+    private int daysLate;
+
+    public Rental(Movie movie, int daysRented) {
+        this.movie = movie;
+        this.daysRented = daysRented;
+        this.daysLate = 0; 
+    }
+
+
+    public Movie getMovie()        { return movie; }
+    public int getDaysRented()     { return daysRented; }
+    public int getDaysLate()       { return daysLate; }
+
+
+    public void setDaysLate(int daysLate) {
+        this.daysLate = daysLate;
+    }
+
+
+
+    public double getLateFees() {
+        return movie.calcLateFees(daysLate);
+    }
+}
+
+question 5
+
+public class Question5RandomDrawing {
+	public static void main(String[] args) {
+
+		RandomDrawing<Integer> intBox = new RandomDrawing<Integer>();
+		RandomDrawing<String> stringBox = new RandomDrawing<String>();
+
+		intBox.add(3);
+		intBox.add(10);
+		intBox.add(75);
+		intBox.add(45);
+
+		stringBox.add("Carol");
+		stringBox.add("Bob");
+		stringBox.add("Ted");
+		stringBox.add("Alice");
+
+		System.out.println("Drawing integers:");
+		while (!intBox.isEmpty()) {
+			System.out.println(intBox.drawItem());
+		}
+
+		System.out.println("Drawing names:");
+		while (!stringBox.isEmpty()) {
+			System.out.println(stringBox.drawItem());
+		}
+        }
+}
+
+
+
+
+
+
+
+
